@@ -144,11 +144,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       styles: [
         {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
         {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-        {elementType: 'labels.text.fill', stylers: [{color: '#FFD93A'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
         {
           featureType: 'administrative.locality',
           elementType: 'labels.text.fill',
-          stylers: [{color: '#FFD93A'}]
+          stylers: [{color: '#d59563'}]
         },
         {
           featureType: 'poi',
