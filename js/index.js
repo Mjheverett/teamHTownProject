@@ -154,7 +154,7 @@ randomCountryButton.addEventListener("click", function (event) {
 document.addEventListener('DOMContentLoaded', (e) => {
   const myToast = document.getElementById('myToast');
   const myToastBody = document.getElementById('myToastBody');
-  let toastMessages = ["Jake S. from Atlanta, just found a spot in Kazakhstan! ", "Harmony T. found a vacation spot in Australia!", "Dylan C. travelled to Iceland!", "Justin G. traded Houston for Canada!", " Matthew E. visited England and then Italy.", "David C. visited Japan and tried Sushi."]
+  let toastMessages = ["Jake S. from Atlanta, just found a spot in Kazakhstan! ", "Harmony T. found a vacation spot in Australia!", "Dylan C. traveled to Iceland!", "Justin G. traded Houston for Canada!", " Matthew E. visited England and then Italy.", "David C. visited Japan and tried Sushi."]
 
   setInterval(() => {
     let randomMessage = toastMessages[Math.floor(Math.random() * toastMessages.length)];
