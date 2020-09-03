@@ -13,7 +13,7 @@ html,
 body {
     font-size: 16px;
     height: 100%;
-    background-color: rgb(32, 31, 31);
+    background-color: rgb(155, 155, 155);
 }
 
 body {
@@ -28,17 +28,15 @@ body {
 }
 
 h1 {
-    font-family: 'Shadows Into Light', cursive;
     font-size: 84px;
     text-align: center;
     margin: 0;
     padding: 20px 20px;
-    color: rgb(145, 223, 117);
+    color: rgb(27, 152, 145);
 }
 
 .bio {
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 26px;
+    font-size: 1rem;
     text-align: center;   
     line-height: 2;
     letter-spacing: 1px;
@@ -73,7 +71,7 @@ a:hover {
 }
 
 .snakeColor{
-    color: rgb(145, 223, 117);
+    color: rgb(27, 152, 145);
 }
 
 
@@ -88,7 +86,7 @@ a:hover {
 }
 
 .btn {
-    color: rgb(145, 223, 117);
+    color: rgb(27, 152, 145);
 }
 
 li {
@@ -96,7 +94,7 @@ li {
 }
 
 .snakeButton{
-    background-color: rgb(145, 223, 117);
+    background-color: rgb(27, 152, 145);
     border-radius: .3rem;
     color: rgb(16,16,16)
 }
@@ -124,7 +122,7 @@ li {
 
 .nav-masthead .nav-link:hover,
 .nav-masthead .nav-link:focus {
-    border-bottom-color: rgba(255, 255, 255, .25);
+    border-bottom-color: rgba(209, 40, 99, 0.5);
 }
 
 .nav-masthead .nav-link + .nav-link {
@@ -133,7 +131,7 @@ li {
 
 .nav-masthead .active {
     color: #fff;
-    border-bottom-color: #fff;
+    border-bottom-color: rgb(255, 217, 58);
 }
 
 @media (min-width: 48em) {

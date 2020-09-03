@@ -5,12 +5,13 @@ const searchCountry = document.getElementById("searchCountry");
 const matchList = document.getElementById("matchList");
 //create the random search button
 const randomCountryButton = document.getElementById("randomCountry");
+//create submit button
+const submitButton = document.getElementById("submitButton");
 
 // Add event listner to the Submit button
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
-  //create submit button
-  const submitButton = document.getElementById("submitButton");
+  
   //creates the ability to open search in new window on click
   var windowFeatures = "menubar=yes, width=1920, height=1080, top=0, screenX=0, screenY=0"
   var name = searchCountry.value;
@@ -19,7 +20,7 @@ submitButton.addEventListener("click", function (event) {
     //Assigning the JSON response as an array
     const states = response;
     //Capitalize string input
-     const nameofCountry = name.toUpperCase();
+    const nameofCountry = name.toUpperCase();
     // Exist check 
     var existCheck = 0;
     for (let i = 0; i < states.length; i++) {
@@ -153,19 +154,19 @@ randomCountryButton.addEventListener("click", function (event) {
 document.addEventListener('DOMContentLoaded', (e) => {
   const myToast = document.getElementById('myToast');
   const myToastBody = document.getElementById('myToastBody');
-  let toastMessages = ["Snake Jodgel just found his hiding spot in Kazakhstan! ", "Yelrac Zil defeats Snake Jodgel and found a vacation spot in Belize!", "Ron Sheid found his practice location to test his special slap in Iceland!", "DigitalNomad escaped the Hurricane in Canada!", " PsycoGoat Var jumped the fence in Ireland!", "Cave Dolon got a Corona and two Hurricanes for $20.20 in Mexico!"]
+  let toastMessages = ["Jake S. from Atlanta, just found a spot in Kazakhstan! ", "Harmony T. found a vacation spot in Australia!", "Dylan C. travelled to Iceland!", "Justin G. traded Houston for Canada!", " Matthew E. visited England and then Italy.", "David C. visited Japan and tried Sushi."]
 
   setInterval(() => {
     let randomMessage = toastMessages[Math.floor(Math.random() * toastMessages.length)];
     let myToastRandom = randomMessage;
     myToastBody.innerHTML = myToastRandom;
     $(myToast).toast({
-      delay: 8000
+      delay: 4000
     });
     $(myToast).toast('show');
-  }, 10000);
+  }, 15000);
 });
 
 console.log("Global Snake Awesomeness Loaded!!!!!")
-console.log("Designed by Team H-Town!")
+console.log("Improved by Team To-Do Today!")
 console.log("See About Us!")

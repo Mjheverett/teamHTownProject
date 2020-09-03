@@ -69,8 +69,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //re-assign the lat/long from response
     let countryName = document.querySelectorAll("#countryName");
     countryName.innerHTML = name;
-    console.log('The Name is: ', name)
-    console.log("The Country Name is:", countryName)
+    // console.log('The Name is: ', name)
+    // console.log("The Country Name is:", countryName)
     // Assigning country name to main hero at the top
     let titleName = document.getElementById('titleName');
     titleName.innerHTML = "Welcome to " + decodeURI(name) + "!";
@@ -89,6 +89,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // Assigning latitude / longitude / capital city / callingcode / population / subregion / flagID / flagIMG from API response
     let latitude = response[0].latlng[0];
     let longitude = response[0].latlng[1];
+    let borders = response[0].borders;
     let capital = response[0].capital;
     console.log("The capitol is: ", capital);
     let currency = response[0].currencies[0].name;
@@ -113,7 +114,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     weatherInfo.then((response) => {
       console.log(response);
       const capitalWeather = document.getElementById('capitalWeather');
-      capitalWeather.innerHTML = "The Weather for " + response.name + ', ' + decodeURI(name) + ':';
+      capitalWeather.innerHTML = "Current Weather for " + response.name + ', ' + decodeURI(name) + ':';
       weatherImage.src = `icons/${response.weather[0].icon}.png`;
       let weatherOutput = document.getElementById('weatherOutput');
       let capitalName = response.name;
@@ -123,15 +124,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
       // Appending weather api resonses to list elements
       let weatherItem1 = document.createElement("li");
       weatherItem1.classList.add("none");
-      weatherItem1.innerHTML = "Temperature is: " + temperature.toFixed() + " ℉	";
+      weatherItem1.innerHTML = "Temperature: " + temperature.toFixed() + " ℉	";
       weatherOutput.appendChild(weatherItem1);
       let weatherItem2 = document.createElement("li");
       weatherItem2.classList.add("none");
-      weatherItem2.innerHTML = "Temperature feels like is: " + feelsLike.toFixed() + " ℉	";
+      weatherItem2.innerHTML = "Feels like: " + feelsLike.toFixed() + " ℉	";
       weatherOutput.appendChild(weatherItem2);
       let weatherItem3 = document.createElement("li");
       weatherItem3.classList.add("none");
-      weatherItem3.innerHTML = "Humidity is: " + humidity + " %";
+      weatherItem3.innerHTML = "Humidity: " + humidity + " %";
       weatherOutput.appendChild(weatherItem3);
     });
     // Creating new map off of API query (coutry)
@@ -139,7 +140,87 @@ window.addEventListener("DOMContentLoaded", (event) => {
     var position = {lat: latitude, lng: longitude};
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: latitude, lng: longitude },
-      zoom: 4,
+      zoom: 3,
+      styles: [
+        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+        {elementType: 'labels.text.fill', stylers: [{color: '#FFD93A'}]},
+        {
+          featureType: 'administrative.locality',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#FFD93A'}]
+        },
+        {
+          featureType: 'poi',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'geometry',
+          stylers: [{color: '#263c3f'}]
+        },
+        {
+          featureType: 'poi.park',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#6b9a76'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry',
+          stylers: [{color: '#38414e'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#212a37'}]
+        },
+        {
+          featureType: 'road',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#9ca5b3'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry',
+          stylers: [{color: '#746855'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'geometry.stroke',
+          stylers: [{color: '#1f2835'}]
+        },
+        {
+          featureType: 'road.highway',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#f3d19c'}]
+        },
+        {
+          featureType: 'transit',
+          elementType: 'geometry',
+          stylers: [{color: '#2f3948'}]
+        },
+        {
+          featureType: 'transit.station',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#d59563'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'geometry',
+          stylers: [{color: '#17263c'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.fill',
+          stylers: [{color: '#515c6d'}]
+        },
+        {
+          featureType: 'water',
+          elementType: 'labels.text.stroke',
+          stylers: [{color: '#17263c'}]
+        }
+      ]
     });
     marker = new google.maps.Marker({position: position, map: map});
 
@@ -171,6 +252,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
     newListitem9.classList.add('none');
     newListitem9.innerHTML = "Sub-region: " + Subregion;
     outputList.appendChild(newListitem9);
+    // Borders
+    const newListitem11 = document.createElement("li");
+    newListitem11.classList.add('none');
+    if (borders == '') {
+      borders = "None";
+    };
+    newListitem11.innerHTML = "Adjacent Countries: " + borders;
+    outputList.appendChild(newListitem11);
     // Capital
     const newListitem2 = document.createElement("li");
     newListitem2.classList.add('none');
@@ -193,6 +282,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     newListitem10.href = "https://en.wikipedia.org/wiki/" + name;
     newListitem10.target = "_blank"
     outputList1.appendChild(newListitem10);
+    //break between links
+    const breaks = document.createElement('br');
+    outputList1.appendChild(breaks);
+    //Link to flights
+    const newListitem12 = document.createElement("a");
+    newListitem12.classList.add('snakeColor');
+    newListitem12.innerHTML = "Search for flights to " + decodeURI(name);
+    newListitem12.href = "https://google.com/search?q=flights%20" + name;
+    newListitem12.target = "_blank"
+    outputList1.appendChild(newListitem12);
 
   });
 
